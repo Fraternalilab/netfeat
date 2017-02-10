@@ -58,7 +58,7 @@
 #define PACKAGE "netfeat"
 
 /* Define to the address where bug reports for this package should be sent. */
-#define PACKAGE_BUGREPORT "jkleinj@gmail.com"
+#define PACKAGE_BUGREPORT "jens@jkleinj.eu"
 
 /* Define to the full name of this package. */
 #define PACKAGE_NAME "netFeat"
@@ -68,6 +68,9 @@
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "netfeat"
+
+/* Define to the home page for this package. */
+#define PACKAGE_URL ""
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "1.4.0"
