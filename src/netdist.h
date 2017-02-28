@@ -15,6 +15,7 @@ netdist.h : network distances
 
 #include "arg.h"
 #include "array.h"
+#include "config.h"
 #include "error.h"
 #include "ints.h"
 #include "matrix.h"

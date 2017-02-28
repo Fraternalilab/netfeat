@@ -113,7 +113,7 @@ __inline__ static int approximately_equal(double a, double b)
 	initialise for range [0, k_max] */
 void degree_statistics(Ints *ints, Arg *arg)
 {
-	unsigned int i, j;
+	unsigned int i, j, k, k_max;
 	int k_i; /* degree k of node i: number of links to this node */
 	int checksum_i = 0; /* for consistency check */
 	double checksum_f = 0.;
@@ -123,6 +123,19 @@ void degree_statistics(Ints *ints, Arg *arg)
 	ints->k_var = 0.;
 	ints->logk_av = 0.;
 	ints->k_max = 0;
+
+	/*____________________________________________________________________________*/
+	/** determine k_max */
+	for (i = 0; i < ints->N; ++ i) {
+		k = 0;
+		for (j = 0; j < ints->N; ++ j) {
+			k += ints->c[i][j]; /* degree 'k_i': sum up all interactions of node 'i' */
+		}
+		k_max = k_max > k ? k_max : k; /* k_max */
+	}
+	ints->k_max = k_max;
+
+	/*____________________________________________________________________________*/
 	/** initialise arrays */
 	/* degree distribution */
 	ints->k = safe_malloc((ints->k_max + 1) * sizeof(int));
@@ -144,15 +157,12 @@ void degree_statistics(Ints *ints, Arg *arg)
 		ints->k_list[i] = k_i; /* degree list: assign degree 'k_i' to node 'i' */
 		ints->k_av += ((k_i - ints->k_av) / (i + 1)); /* average degrees */
 		ints->k_var += (((k_i * k_i) - ints->k_var) / (i + 1)); /* degree variation */
-		ints->k_max = ints->k_max > k_i ? ints->k_max : k_i; /* k_max */
 	}
 
-/*
 #ifdef DEBUG
 	for (i = 0; i < ints->N; ++ i)
 		fprintf(stderr, "%s:%d: %d %d\n", __FILE__, __LINE__, i, ints->k_list[i]);
 #endif
-*/
 
 	/*____________________________________________________________________________*/
 	/** degree probability distribution : p(i) = 1/N k(i) */
@@ -163,25 +173,27 @@ void degree_statistics(Ints *ints, Arg *arg)
 		/** variables for consistency checks (see below) */
 		checksum_i += (ints->k[i] * i);
 		checksum_f += ints->p[i];
-/*
 #ifdef DEBUG
+		if (ints->p[i] > 1e-6) {
 		fprintf(stderr, "%s:%d: %d %d %f\n", 
 			__FILE__, __LINE__, i, ints->k[i], ints->p[i]);
+		}
 #endif
-*/
 	}
 
 	/*____________________________________________________________________________*/
 	/** consistency checks */
 	/* sum over all [degree_probability * degree] equals number of interactions */	
+#ifdef DEBUG
+	fprintf(stderr, "%s:%d: checksum_i %d\tints->nInteraction %d\n",
+				__FILE__, __LINE__, checksum_i, ints->nInteraction);
+#endif
 	assert(checksum_i == ints->nInteraction);
 	/* the probability distribution is normalised */
 	assert(approximately_equal(checksum_f, 1.));
 
 	/* print result */
-	if (! arg->silent) fprintf(stdout, "\t\taverage degree <k> = %lf\n\
-										\t\tdegree variance <kk> = %lf\n\
-										\t\tmaximal degree k_max = %d\n",
+	if (! arg->silent) fprintf(stdout, "\t\taverage degree <k> = %lf\n\t\tdegree variance <kk> = %lf\n\t\tmaximal degree k_max = %d\n",
 								ints->k_av, ints->k_var, ints->k_max);
 	if (ints->k_max <= 0) Error("\t\tmaximal degree <= 0: something wrong here?\n");
 }

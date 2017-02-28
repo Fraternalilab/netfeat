@@ -13,6 +13,7 @@ Read the COPYING file for license information.
 #include <stdio.h>
 
 #include "arg.h"
+#include "config.h"
 #include "error.h"
 #include "float.h"
 #include "ints.h"

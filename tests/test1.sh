@@ -1,2 +1,2 @@
 #! /bin/sh
-../src/netfeat --matIn ara_thaliana.mat || exit 1
+valgrind ../src/netfeat --matIn ara_thaliana.mat || exit 1

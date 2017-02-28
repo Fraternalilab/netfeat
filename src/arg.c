@@ -65,7 +65,7 @@ static void set_defaults(Arg *arg)
 	}
 
     arg->matInFlag = 0;
-    arg->loopDepth = 0;
+    arg->loopDepth = 3;
     arg->selfInteraction = 0;
     arg->noNetProp = 0;
 	arg->compare = 0;
@@ -100,7 +100,7 @@ static void check_input(Arg *arg)
 	assert(arg->compare == 0 || arg->compare == 1);
 	assert(arg->consistency == 0 || arg->consistency == 1);
 	assert(arg->smooth >= 0);
-	assert(arg->fillval > 0. && arg->fillval < 1.);
+	assert(arg->fillval >= 0. && arg->fillval < 1.);
 	assert(arg->silent == 0 || arg->silent == 1);
 	assert(arg->nNet > 0);
 
@@ -133,7 +133,8 @@ int parse_args(int argc, char **argv, Arg *arg)
        --protList1\t\t(mode: optional , type: char  , default: void)\n\
        --matIn1\t\t\t(mode: instead  , type: char  , default: void)\n\
      MODE\n\
-       --loopDepth\t\t(mode: optional , type: int, default: 0)\n\
+       --loopDepth\t\t(mode: optional , type: int, default: 3)\n\
+       --selfInteraction\t\t(mode: optional , type: int, default: 0)\n\
        --noNetProp\t\t(mode: optional , type: no_arg, default: on)\n\
        --compare\t\t(mode: optional , type: no_arg, default: off)\n\
        --smooth\t\t\t(mode: optional , type: int   , default: 0)\n\
@@ -168,6 +169,7 @@ int parse_args(int argc, char **argv, Arg *arg)
 		{"matIn1", required_argument, 0, 6},
 		{"matOut", required_argument, 0, 7},
 		{"listOut", required_argument, 0, 8},
+		{"loopDepth", required_argument, 0, 12},
 		{"selfInteraction", no_argument, 0, 13},
 		{"noNetProp", no_argument, 0, 14},
 		{"compare", no_argument, 0, 15},
@@ -183,7 +185,7 @@ int parse_args(int argc, char **argv, Arg *arg)
 
 	/*____________________________________________________________________________*/
     /** assign parameters to long options */
-    while ((c = getopt_long(argc, argv, "1:2:3:4:5:6:7:8:9:10:11:12: 13 14 15 16 17:18: 19 20 21 22 ", long_options, NULL)) != -1) {
+    while ((c = getopt_long(argc, argv, "1:2:3:4:5:6:7:8:12: 13 14 15 16 17:18: 19 20 21 22 ", long_options, NULL)) != -1) {
         switch(c) {
             case 1:
                 arg->net[0].intsList = optarg;
@@ -265,6 +267,8 @@ int parse_args(int argc, char **argv, Arg *arg)
 	/** print run modes */
 	if (! arg->silent) {	
 		fprintf(stdout, "Run mode\n");
+
+		fprintf(stdout, "\tUsing loop depth of %d\n", arg->loopDepth);
 
 		if (! arg->selfInteraction)
 			fprintf(stdout, "\tEXcluding self-interactions\n");

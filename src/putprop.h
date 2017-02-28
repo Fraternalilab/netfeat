@@ -12,6 +12,7 @@ Read the COPYING file for license information.
 
 #include "arg.h"
 #include "array.h"
+#include "config.h"
 #include "ints.h"
 #include "safe.h"
 #include "matrix.h"

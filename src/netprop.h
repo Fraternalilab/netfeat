@@ -15,6 +15,7 @@ Read the COPYING file for license information.
 #include <string.h>
 
 #include "arg.h"
+#include "config.h"
 #include "array.h"
 #include "error.h"
 #include "ints.h"

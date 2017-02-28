@@ -11,6 +11,7 @@ Read the COPYING file for license information.
 #include <stdlib.h>
 #include <stdio.h>                                                                                                                     
 #include "arg.h"
+#include "config.h"
 #include "getinteraction.h"
 #include "netcons.h"
 #include "netdist.h"
