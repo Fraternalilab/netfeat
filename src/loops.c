@@ -134,7 +134,7 @@ EC6:
 /* count graph loops */
 void loops(Ints *ints, Arg *arg)
 {
-	int i, j, depth;
+	int i;
 	printf("\tLoops : ");
 	
 	ints->loop_counter = malloc(ints->N * sizeof(int));
@@ -164,10 +164,12 @@ void print_loops(Ints *ints, Arg *arg)
 
 	fprintf(outFile,"loop search depth: %d\n", arg->loopDepth);
 	fflush(stdout);
-	/* Tiernan is directional graph algorithm so loop number be must divided by 2 for undirectional graphs */ 
-	for (i = 1; i <= arg->loopDepth; ++ i)
-				fprintf(outFile, "%8d\t%8d\n", i, (int)(.5F * ints->loop_counter[i])); 
-	
+	/* Tiernan is directional graph algorithm, */
+	/*    loop number be must divided by 2 for undirectional graphs */ 
+	//for (i = 3; i <= arg->loopDepth; ++ i) {
+		//fprintf(outFile, "%8d\t%f\n", i, floor(.5 * ints->loop_counter[i])); 
+		//fprintf(outFile, "i %d\n", i);
+	//}
 	fclose(outFile);
 }
 

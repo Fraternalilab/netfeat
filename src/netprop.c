@@ -126,7 +126,7 @@ void degree_statistics(Ints *ints, Arg *arg)
 
 	/*____________________________________________________________________________*/
 	/** determine k_max */
-	for (i = 0; i < ints->N; ++ i) {
+	for (i = 0, k_max = 0; i < ints->N; ++ i) {
 		k = 0;
 		for (j = 0; j < ints->N; ++ j) {
 			k += ints->c[i][j]; /* degree 'k_i': sum up all interactions of node 'i' */
@@ -134,6 +134,10 @@ void degree_statistics(Ints *ints, Arg *arg)
 		k_max = k_max > k ? k_max : k; /* k_max */
 	}
 	ints->k_max = k_max;
+#ifdef DEBUG
+	fprintf(stderr, "%s:%d: k_max %d\tints->k_max %d\n",
+				__FILE__, __LINE__, k_max, ints->k_max);
+#endif
 
 	/*____________________________________________________________________________*/
 	/** initialise arrays */
@@ -193,9 +197,10 @@ void degree_statistics(Ints *ints, Arg *arg)
 	assert(approximately_equal(checksum_f, 1.));
 
 	/* print result */
-	if (! arg->silent) fprintf(stdout, "\t\taverage degree <k> = %lf\n\t\tdegree variance <kk> = %lf\n\t\tmaximal degree k_max = %d\n",
-								ints->k_av, ints->k_var, ints->k_max);
-	if (ints->k_max <= 0) Error("\t\tmaximal degree <= 0: something wrong here?\n");
+	//if (! arg->silent) fprintf(stdout, "\t\taverage degree <k> = %lf\n\t\tdegree variance <kk> = %lf\n\t\tmaximal degree k_max = %d\n",
+	//							ints->k_av, ints->k_var, ints->k_max);
+	//if (! arg->silent) fprintf(stdout, "average degree <k> = %lf\n", ints->k_av);
+	//if (ints->k_max <= 0) Error("\t\tmaximal degree <= 0: something wrong here?\n");
 }
 
 /*____________________________________________________________________________*/
@@ -214,14 +219,14 @@ void wiring(Ints *ints, Arg *arg)
 
 	/*____________________________________________________________________________*/
 	/** w */ 
-    for (i = 0; i < ints->N; ++ i) {
+    for (i = 0; i <= ints->k_max; ++ i) {
 		ints->w[i] = ints->p[i] * (double)i / ints->k_av;
     }
 
     /*____________________________________________________________________________*/
     /** W : loops run over nodes, but W is function of degrees */
-    for (i = 0; i <= ints->N; ++ i) {
-        for (j = 0; j <= ints->N; ++ j) {
+    for (i = 0; i < ints->N; ++ i) {
+        for (j = 0; j < ints->N; ++ j) {
 			if (ints->c[i][j] == 1) {
 				ints->W[ints->k_list[i]][ints->k_list[j]] += (1. / (ints->k_av * (double)ints->N));
 			}
