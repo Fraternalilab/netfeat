@@ -64,7 +64,7 @@
 #define PACKAGE_NAME "netFeat"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "netFeat 1.4.0"
+#define PACKAGE_STRING "netFeat 1.4.1"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "netfeat"
@@ -73,7 +73,7 @@
 #define PACKAGE_URL ""
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.4.0"
+#define PACKAGE_VERSION "1.4.1"
 
 /* Define to compile with PROFILING settings. */
 /* #undef PROFILING */
@@ -82,7 +82,7 @@
 #define STDC_HEADERS 1
 
 /* Version number of package */
-#define VERSION "1.4.0"
+#define VERSION "1.4.1"
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */

@@ -28,5 +28,10 @@ void average_degree(Ints *ints, Arg *arg);
 void network_properties(int n, Ints *ints, Arg *arg);
 void mobility(Ints *ints);
 void degree_statistics(Ints *ints, Arg *arg);
+void wiring(Ints *ints, Arg *arg);
+void degree_degree_distribution_eq6(Ints *ints, Arg *arg);
+void entropy_pn(int n, Ints *ints, Arg *arg);
+void entropy_pl(int n, Ints *ints, Arg *arg);
+void assortativity(Ints *ints, Arg *arg);
 
 #endif

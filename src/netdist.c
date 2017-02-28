@@ -213,7 +213,7 @@ void find_rho(Ints *ints0, Ints *ints1, double *rho, int k_max)
 			break;
 		}
 
-		copy_array_double(rho, rho_new, (k_max + 1));
+		copy_arrays_double(rho, rho_new, (k_max + 1));
 
 		/* re-parametrise */
 		if (n > 100) {

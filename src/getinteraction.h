@@ -13,7 +13,9 @@ Read the COPYING file for license information.
 
 #include "arg.h"
 #include "ints.h"
+#include "matrix.h"
 #include "safe.h"
+#include "vector.h"
 
 void read_node_list(char *protFileName, Ints *ints, Arg *arg);
 void read_interaction_list(char *intsFileName, Ints *ints, Arg *arg);

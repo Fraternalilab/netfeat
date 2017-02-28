@@ -101,7 +101,7 @@ void smoothen_p(Ints *ints, Arg *arg)
 		*/
 	}
 
-	copy_array_double(ints->p_smooth, Smooth_p, (ints->k_max + 1)); 
+	copy_arrays_double(ints->p_smooth, Smooth_p, (ints->k_max + 1)); 
 
 	free(Smooth_p);
 	free(Smooth_pDat);

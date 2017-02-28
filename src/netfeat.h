@@ -11,10 +11,14 @@ Read the COPYING file for license information.
 #include <stdlib.h>
 #include <stdio.h>                                                                                                                     
 #include "arg.h"
+#include "getinteraction.h"
 #include "netcons.h"
+#include "netdist.h"
 #include "netprop.h"
 #include "ints.h"
+#include "loops.h"
 #include "matrix.h"
+#include "putinteraction.h"
 #include "putprop.h"
 #include "safe.h"
 #include "transform.h"

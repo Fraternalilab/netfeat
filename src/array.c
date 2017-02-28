@@ -184,7 +184,7 @@ void print_arrays_double(char *outFileName, double *array0, double *array1, int 
 
 /*____________________________________________________________________________*/
 /** copy array of same length */
-void copy_array_double(double *array_to, double *array_from, int length)
+void copy_arrays_double(double *array_to, double *array_from, int length)
 {
     unsigned int i;
 

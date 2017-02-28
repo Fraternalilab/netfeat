@@ -14,6 +14,7 @@ Read the COPYING file for license information.
 #include <stdlib.h>
 #include <string.h>
 
+#include "error.h"
 #include "safe.h"
 
 /*____________________________________________________________________________*/

@@ -128,12 +128,13 @@ int read_interaction_matrix(char *matFileName, Ints *ints, Arg *arg, int nInts)
 {
 	unsigned int i, j;
 	FILE *matInFile = 0;
+	int scan = 0;
 
 	/* read input matrix */
 	matInFile = safe_open(matFileName, "r");
 
 	/* first line of input matrix is dimension (of square matrix) */
-	fscanf(matInFile, "%d", &(ints->N)); /* get number of nodes */
+	scan = fscanf(matInFile, "%d", &(ints->N)); /* get number of nodes */
 	assert(ints->N > 1); /* safety line */
 	/* read only number of interactions if 'nInts' flag is '1' */
 	if (nInts) {
@@ -162,8 +163,8 @@ int read_interaction_matrix(char *matFileName, Ints *ints, Arg *arg, int nInts)
 	if (symmetry_mat2D_int(ints->c, ints->N, ints->N) != 0)
 		Error("Input matrix not symmetric!");
 
-	/* assert binarity of input matrix */
-	if (binarity_mat2D_int(ints->c, ints->N, ints->N) != 0)
+	/* assert binary of input matrix */
+	if (binary_mat2D_int(ints->c, ints->N, ints->N) != 0)
 		Error("Input matrix not binary!");
 
 	if (! arg->silent)

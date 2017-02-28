@@ -8,7 +8,7 @@ Read the COPYING file for license information.
 
 /*____________________________________________________________________________*/
 /** self-multiplication of the binary interaction matrix */
-network_mults(int n, Ints *ints, Arg *arg)
+int network_mults(int n, Ints *ints, Arg *arg)
 {
 	int i;
 	int **mx_c, **my_c; /* multiplied interaction matrices */

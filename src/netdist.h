@@ -19,6 +19,7 @@ netdist.h : network distances
 #include "ints.h"
 #include "matrix.h"
 #include "safe.h"
+#include "transform.h"
 
 /*____________________________________________________________________________*/
 /* prototypes */

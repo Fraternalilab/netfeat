@@ -1,3 +1,9 @@
+/*==============================================================================
+loops.c : network loops 
+(C) 2008-2010 A Annibale, L Fernandes, ACC Coolen, J Kleinjung, F Fraternali
+Read the COPYING file for license information.
+==============================================================================*/
+
 #include "loops.h"
 #include "math.h"
 
@@ -19,11 +25,11 @@ void loops_Tiernan(Ints *ints, Arg *arg)
 	int i ,ii, j;
 	float tp,old_tp; /* time progress */
 	int *CC = &(ints->loop_counter[0]);  
-	int depth = arg->loop_depth;
+	int depth = arg->loopDepth;
 
 	/*____________________________________________________________________________*/
 	/* EC1 initialize */
-	printf("Progress(%) :             ");
+	printf("Progress(%%) :             ");
 	N = ints->N;
 	P = malloc(N * sizeof(int));
 	H = malloc(N * sizeof(int *));
@@ -156,7 +162,7 @@ void print_loops(Ints *ints, Arg *arg)
 	 
 	outFile = safe_open("loops.dat", "w");
 
-	fprintf(outFile,"loop search depth: %d\n", arg->searchDepth);
+	fprintf(outFile,"loop search depth: %d\n", arg->loopDepth);
 	fflush(stdout);
 	/* Tiernan is directional graph algorithm so loop number be must divided by 2 for undirectional graphs */ 
 	for (i = 1; i <= arg->loopDepth; ++ i)

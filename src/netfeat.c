@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 			if (arg.mtol) {
 				if (! arg.silent) fprintf(stdout, "\n\tTransformation of input matrix to output list %s\n",
 										pnet->listOut);
-				print_interaction_list_ascii(pnet->listOut, &ints);
+				print_interaction_list_ascii(pnet->listOut, pints, &arg);
 			}
 		/* node list and interaction list are input */
 		} else {
@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 			if (arg.ltom) {
 				if (! arg.silent) fprintf(stdout, "\n\tTransformation input list to output matrix %s\n",
 									pnet->matOut);
-				print_interaction_matrix_ascii(pnet->matOut, pints);
+				print_interaction_matrix_ascii(pnet->matOut, pints, &arg);
 			}
 		}
 
@@ -130,8 +130,7 @@ int main(int argc, char *argv[])
 		print_Pi_corr(n, 0, pints);
 		print_etc(n, pints);
 		print_entropy(n, pints);
-		if (arg.loopDepthFlag)
-			print_loops(pints);
+		print_loops(pints, &arg);
 	}
 
 	/*____________________________________________________________________________*/

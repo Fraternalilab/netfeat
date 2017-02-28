@@ -93,8 +93,8 @@ int symmetry_mat2D_int(int **mat2D_int, int x, int y)
 	return s;
 }
 
-/** binarity check */
-int binarity_mat2D_int(int **mat2D_int, int x, int y)
+/** binary check */
+int binary_mat2D_int(int **mat2D_int, int x, int y)
 {
     unsigned int i, j, s;
 
