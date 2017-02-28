@@ -424,6 +424,6 @@ void assortativity(Ints *ints, Arg *arg)
 /** compute (single) network properties */
 void network_properties(int n, Ints *ints, Arg *arg)
 {
-
+	loops(ints, arg);
 }
 

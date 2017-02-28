@@ -164,12 +164,11 @@ void print_loops(Ints *ints, Arg *arg)
 
 	fprintf(outFile,"loop search depth: %d\n", arg->loopDepth);
 	fflush(stdout);
-	/* Tiernan is directional graph algorithm, */
-	/*    loop number be must divided by 2 for undirectional graphs */ 
-	//for (i = 3; i <= arg->loopDepth; ++ i) {
-		//fprintf(outFile, "%8d\t%f\n", i, floor(.5 * ints->loop_counter[i])); 
-		//fprintf(outFile, "i %d\n", i);
-	//}
+	/* Tiernan is a directional graph algorithm, */
+	/*    loop number be must divided by 2 for undirected graphs */ 
+	for (i = 3; i <= arg->loopDepth; ++ i) {
+		fprintf(outFile, "%8d\t%d\n", i, (int)floor(.5 * ints->loop_counter[i])); 
+	}
 	fclose(outFile);
 }
 

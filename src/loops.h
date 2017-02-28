@@ -24,6 +24,7 @@ Read the COPYING file for license information.
 /*____________________________________________________________________________*/
 /* prototypes */
 void loops_Tiernan(Ints *ints, Arg *arg);
+void loops(Ints *ints, Arg *arg);
 void print_loops(Ints *ints, Arg *arg);
 
 

@@ -19,6 +19,7 @@ Read the COPYING file for license information.
 #include "array.h"
 #include "error.h"
 #include "ints.h"
+#include "loops.h"
 #include "matrix.h"
 #include "safe.h"
 

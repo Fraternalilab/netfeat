@@ -178,6 +178,7 @@ int main(int argc, char *argv[])
 				}
 			}
 		}
+		free(pints->loop_counter);
 	}
 
 	free(arg.net);
